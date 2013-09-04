@@ -1,8 +1,8 @@
-<h2><%= @todo.list_name %></h2>
+<h2><%= @todo.todo_list.list_name %></h2>
 <ul>
   <li><%= @todo.title %></li>
   <li><%= @todo.body %></li>
-  <li><%= @todo.todo_count %></li>
+  <li><%= @todo.todo_list.count %></li>
 </ul>
 
 <%= link_to "edit", edit_todo_path(@todo) %>

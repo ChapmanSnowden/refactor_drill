@@ -1,4 +1,5 @@
 class TodosController < ApplicationController
+  include TodoHelper
   before_filter :load_todos
 
   def index
@@ -14,17 +15,10 @@ class TodosController < ApplicationController
   end
 
   def create
-    list_name = params[:todo].delete(:list_name)
-    list_name = list_name.downcase
-    list_name = list_name.gsub ' ', '-'
+    todo_list = create_or_find_todo_list (params[:todo])
     @todo = Todo.new params[:todo]
+    @todo.todo_list = todo_list
     if @todo.save
-      @todo.update_attributes :list_name => list_name
-      @todos = Todo.where :list_name => list_name
-      @todos.each do |todo|
-        todo.update_attributes :todo_count => @todos.count
-        todo.save
-      end
       redirect_to root_url
     else
       render :new

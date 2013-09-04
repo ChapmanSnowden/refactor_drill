@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130904170458) do
+ActiveRecord::Schema.define(:version => 20130904175605) do
 
   create_table "todo_lists", :force => true do |t|
     t.string  "list_name", :default => ""
@@ -21,9 +21,10 @@ ActiveRecord::Schema.define(:version => 20130904170458) do
   create_table "todos", :force => true do |t|
     t.string  "title"
     t.string  "body"
-    t.string  "list_name",  :default => ""
-    t.integer "status",     :default => 0
+    t.string  "list_name",    :default => ""
+    t.integer "status",       :default => 0
     t.integer "todo_count"
+    t.integer "todo_list_id"
   end
 
 end
